@@ -29,7 +29,7 @@ class ChaletController extends Controller
             'location' => 'nullable|string|max:255',
             'description' => 'nullable|string',
             'status' => 'required|in:available,unavailable',
-            'type' => 'nullable|string|max:50',
+            'type' => 'nullable|in:apartment,studio,villa',
             'images.*' => 'nullable|image|mimes:jpg,jpeg,png|max:4096',
             'videos.*' => 'nullable|file|mimes:mp4,avi,mov|max:20480',
         ]);
@@ -60,7 +60,7 @@ class ChaletController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'location' => 'nullable|string|max:255',
-            'type' => 'nullable|string|max:255',
+            'type' => 'nullable|in:apartment,studio,villa',
             'status' => 'required|in:available,unavailable',
             'description' => 'nullable|string',
             'images.*' => 'nullable|image|mimes:jpg,jpeg,png|max:4096',

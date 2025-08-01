@@ -30,11 +30,16 @@
         'actions' => __('trans.actions'),
     ];
     $rows = $chalets->map(function($chalet) {
+        $typeLabels = [
+            'apartment' => __('trans.apartment'),
+            'studio' => __('trans.studio'),
+            'villa' => __('trans.villa')
+        ];
         return [
             '#' => $chalet->id,
             'name' => '<div class="user-info">'.$chalet->name.'</div>',
             'location' => $chalet->location,
-            'type' => $chalet->type,
+            'type' => $chalet->type ? $typeLabels[$chalet->type] : '-',
             'status' => '<span class="status-badge status-'.($chalet->status == 'available' ? 'success' : 'danger').'">'.__($chalet->status).'</span>',
             'images' => collect($chalet->images)->map(function($img, $i) use ($chalet) {
                 return '<a href="'.asset('storage/'.$img->image).'" class="glightbox" data-gallery="chalet-'.$chalet->id.'"><img src="'.asset('storage/'.$img->image).'" style="width:40px;height:40px;border-radius:8px;object-fit:cover;cursor:pointer;" alt="img"></a>';

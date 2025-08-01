@@ -37,7 +37,12 @@
                 <div class="form-group">
                     <label class="form-label">{{ __('trans.type') }}</label>
                     <div class="input-wrapper">
-                        <input type="text" name="type" class="form-input @error('type') error @enderror" value="{{ old('type') }}" placeholder="{{ __('trans.enter_type') }}">
+                        <select name="type" class="form-input @error('type') error @enderror">
+                            <option value="">{{ __('trans.select_type') }}</option>
+                            <option value="apartment" @if(old('type')=='apartment') selected @endif>{{ __('trans.apartment') }}</option>
+                            <option value="studio" @if(old('type')=='studio') selected @endif>{{ __('trans.studio') }}</option>
+                            <option value="villa" @if(old('type')=='villa') selected @endif>{{ __('trans.villa') }}</option>
+                        </select>
                     </div>
                     @error('type')<span class="error-message">{{ $message }}</span>@enderror
                 </div>

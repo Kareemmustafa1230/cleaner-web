@@ -14,7 +14,7 @@ return new class extends Migration
             $table->string('location')->nullable();
             $table->text('description')->nullable();
             $table->enum('status', ['available', 'unavailable'])->default('available');
-            $table->string('type')->nullable(); // single, double, triple
+            $table->enum('type', ['apartment', 'studio', 'villa'])->nullable(); // apartment, studio, villa
             $table->timestamps();
         });
     }

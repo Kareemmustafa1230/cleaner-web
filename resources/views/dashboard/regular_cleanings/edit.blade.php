@@ -5,13 +5,21 @@
 @section('content')
 <div class="form-container">
     <div class="glass-card form-card">
-        <div class="form-header">
-            <h3>{{ __('trans.edit_regular_cleaning') }}</h3>
-            <p>{{ __('trans.update_regular_cleaning_information_and_media') }}</p>
+        <div class="form-actions-btn" style="margin-bottom: 1.5rem;">
+            <a href="{{ route('dashboard.regular_cleanings.index') }}" class="btn btn-secondary">
+                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                </svg>
+                {{ __('trans.back_to_regular_cleanings') }}
+            </a>
         </div>
         <form action="{{ route('dashboard.regular_cleanings.update', $regularCleaning) }}" method="POST" enctype="multipart/form-data" class="user-form">
             @csrf
             @method('PUT')
+            <div class="form-header">
+                <h3>{{ __('trans.edit_regular_cleaning') }}</h3>
+                <p>{{ __('trans.update_regular_cleaning_information_and_media') }}</p>
+            </div>
             <div class="form-grid">
                 <div class="form-group">
                     <label class="form-label">{{ __('trans.chalet') }}</label>

@@ -28,12 +28,21 @@
             // Close sidebar when clicking outside on mobile
             document.addEventListener('click', (e) => {
                 if (window.innerWidth <= 768) {
-                    if (!sidebar.contains(e.target) && !toggleBtn.contains(e.target) && !overlay.contains(e
-                            .target)) {
+                    if (!sidebar.contains(e.target) && !toggleBtn.contains(e.target) && !overlay.contains(e.target)) {
                         sidebar.classList.remove('open');
                         if (overlay) {
                             overlay.classList.remove('show');
                         }
+                    }
+                }
+            });
+
+            // Handle window resize
+            window.addEventListener('resize', () => {
+                if (window.innerWidth > 768) {
+                    sidebar.classList.remove('open');
+                    if (overlay) {
+                        overlay.classList.remove('show');
                     }
                 }
             });

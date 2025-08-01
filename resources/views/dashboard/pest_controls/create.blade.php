@@ -5,12 +5,20 @@
 @section('content')
 <div class="form-container">
     <div class="glass-card form-card">
-        <div class="form-header">
-            <h3>{{ __('trans.pest_control_information') }}</h3>
-            <p>{{ __('trans.fill_in_the_pest_control_details_below') }}</p>
+        <div class="form-actions-btn" style="margin-bottom: 1.5rem;">
+            <a href="{{ route('dashboard.pest_controls.index') }}" class="btn btn-secondary">
+                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                </svg>
+                {{ __('trans.back_to_pest_controls') }}
+            </a>
         </div>
         <form action="{{ route('dashboard.pest_controls.store') }}" method="POST" enctype="multipart/form-data" class="user-form">
             @csrf
+            <div class="form-header">
+                <h3>{{ __('trans.pest_control_information') }}</h3>
+                <p>{{ __('trans.fill_in_the_pest_control_details_below') }}</p>
+            </div>
             <div class="form-grid">
                 <div class="form-group">
                     <label class="form-label">{{ __('trans.chalet') }}</label>
