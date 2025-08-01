@@ -4,15 +4,18 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Cleaner extends Model
+class Cleaner extends Authenticatable
 {
-    use HasFactory;
+    use HasFactory, HasApiTokens;
 
     protected $fillable = [
         'name',
         'phone',
         'email',
+        'password',
         'national_id',
         'address',
         'hire_date',
@@ -21,9 +24,12 @@ class Cleaner extends Model
     ];
 
     protected $hidden = [
+        'password',
+        'remember_token',
     ];
 
     protected $casts = [
         'hire_date' => 'date',
+        'password' => 'hashed',
     ];
 }
