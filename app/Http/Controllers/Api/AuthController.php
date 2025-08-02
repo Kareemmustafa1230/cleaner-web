@@ -59,38 +59,6 @@ class AuthController extends Controller
     }
 
     /**
-     * تسجيل عامل نظافة جديد
-     */
-    public function register(Request $request)
-    {
-        $validator = Validator::make($request->all(), [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:cleaners',
-            'phone' => 'required|string|max:20',
-            'national_id' => 'required|string|max:50|unique:cleaners',
-            'address' => 'required|string|max:255',
-            'hire_date' => 'required|date',
-        ]);
-
-        if ($validator->fails()) {
-            return $this->validationErrorResponse($validator->errors());
-        }
-
-        $cleaner = Cleaner::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'phone' => $request->phone,
-            'national_id' => $request->national_id,
-            'address' => $request->address,
-            'hire_date' => $request->hire_date,
-            'status' => 'active',
-            'password' => Hash::make('123456') // كلمة مرور افتراضية
-        ]);
-
-        return $this->createdResponse($cleaner, 'تم إنشاء الحساب بنجاح');
-    }
-
-    /**
      * تسجيل الخروج
      */
     public function logout(Request $request)
