@@ -4,21 +4,20 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\Session;
+use Symfony\Component\HttpFoundation\Response;
 
 class SetLocale
 {
-    public function handle(Request $request, Closure $next)
+    /**
+     * Handle an incoming request.
+     *
+     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
+     */
+    public function handle(Request $request, Closure $next): Response
     {
-        // التحقق من وجود لغة محفوظة في الجلسة
-        if (Session::has('locale')) {
-            App::setLocale(Session::get('locale'));
-        } else {
-            // تعيين اللغة الافتراضية (العربية)
-            App::setLocale('ar');
-            Session::put('locale', 'ar');
-        }
+        // Set locale from session or default to 'ar'
+        $locale = session('locale', 'ar');
+        app()->setLocale($locale);
 
         return $next($request);
     }
