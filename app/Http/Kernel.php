@@ -40,6 +40,7 @@ class Kernel extends HttpKernel
         ],
 
         'api' => [
+            \App\Http\Middleware\ForceJsonResponse::class,
             \App\Http\Middleware\ApiCors::class,
             \Illuminate\Routing\Middleware\ThrottleRequests::class.':api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
@@ -68,6 +69,7 @@ class Kernel extends HttpKernel
         'checkUserStatus' => \App\Http\Middleware\CheckUserStatus::class,
         'api.auth' => \App\Http\Middleware\ApiAuthenticate::class,
         'api.role' => \App\Http\Middleware\ApiCheckRole::class,
+        'force.json' => \App\Http\Middleware\ForceJsonResponse::class,
 
         'setLocale' => \App\Http\Middleware\SetLocale::class,
     ];
